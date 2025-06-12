@@ -20,14 +20,15 @@ export const ProductCard = () => {
     
     <div>
       <div>
-        <input type="text" value={searchTerm} onChange={(e)=>{
-          setSearchTerm(e.target.value); // Update search term on input change
-          searchTerm.includes(' ') && (searchTerm = searchTerm.replace(/\s/g, '')); // Remove spaces from search term
-
-         setlistofProducts(searchTerm);
-         // Update search term on input change
+        <input type="text" onChange={(e)=>{
+          const term=e.target.value // Update search term on input change
+         setSearchTerm(term)
+          const filtered = originalProducts.filter(product =>
+            product.title.toLowerCase().includes(term.toLowerCase())
+          );
+          setlistofProducts(filtered);
           
-        }}></input>
+        }} value={searchTerm} ></input>
         
         <button >Search</button>
       </div>
