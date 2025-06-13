@@ -6,6 +6,7 @@ import { createBrowserRouter,RouterProvider,Outlet } from 'react-router-dom';
 import Kid from './components/kid';
 import Men from './components/Men';
 import {Error} from './components/Error';
+import ProductDetails from './components/ProductDetails';
 
 const App = () => {
   return (
@@ -33,6 +34,10 @@ const appRouter = createBrowserRouter([
         {
     path:"/",
     element:<ProductCard/>
+        },
+     {
+   path: "/product/:id",
+  element: <ProductDetails />
         }
     ],
     errorElement:<Error/>

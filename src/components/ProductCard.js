@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Product from './Product';
 import Skeleton from './skeleton'; // Importing skeleton component
+import { Link } from 'react-router-dom';
 
 export const ProductCard = () => {
   const [listofProduct, setlistofProducts] = useState([]);
@@ -46,7 +47,9 @@ export const ProductCard = () => {
       <div className='product_card'>
         {listofProduct.length > 0 ? (
           listofProduct.map(product => (
-            <Product product={product} key={product.id} />
+          <Link key={product.id} to={`/product/${product.id}`}>
+  <Product product={product} />
+</Link>
           ))
         ) : (
           <p>No products found.</p>
