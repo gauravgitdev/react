@@ -1,0 +1,49 @@
+In React, props (short for properties) are used to pass data from a parent component to a child component.
+
+Key Concepts:
+Props are read-only.
+
+You can use them, but you can’t modify them inside the child component.
+
+Props allow component reusability.
+
+You can write one component and customize it by passing different props.
+
+
+
+function Greeting(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Greeting name="Gaurav" />
+      <Greeting name="Anjali" />
+    </div>
+  );
+}
+
+OUTPUT:
+
+Hello, Gaurav!
+Hello, Anjali!
+
+
+
+Destructuring Props (Optional Style):
+Instead of props.name, you can use:
+
+
+function Greeting({ name }) {
+  return <h1>Hello, {name}!</h1>;
+}
+
+
+| Feature    | Description                      |
+| ---------- | -------------------------------- |
+| Purpose    | Pass data to components          |
+| Read/Write | Read-only                        |
+| Syntax     | `<Component propName="value" />` |
+| Benefit    | Component reusability            |
+

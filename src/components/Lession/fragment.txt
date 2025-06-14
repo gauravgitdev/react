@@ -1,0 +1,43 @@
+In React, a Fragment is a special wrapper component used to group multiple elements without adding an extra node to the DOM.
+
+
+✅ Why Use a Fragment?
+Normally in JSX, a component must return a single root element:
+
+❌ This will cause an error:
+
+jsx
+Copy code
+return (
+  <h1>Hello</h1>
+  <p>World</p>
+);
+
+
+✅ Solution: Wrap them using a Fragment:
+
+
+import React from 'react';
+function MyComponent() {
+  return (
+    <React.Fragment>
+      <h1>Hello</h1>
+      <p>World</p>
+    </React.Fragment>
+  );
+}
+
+
+
+✅ Short Syntax:
+React also supports a short syntax:
+
+function MyComponent() {
+  return (
+    <>
+      <h1>Hello</h1>
+      <p>World</p>
+    </>
+  );
+}
+Both <>...</> and <React.Fragment>...</React.Fragment> do the same thing.
