@@ -1,6 +1,6 @@
 import Profile from './Profile'
 import ProfileClass from './ProfileClass'
-import {component}  from 'react'
+import {Component}  from 'react'
 
 // const About = () =>{
 
@@ -15,19 +15,20 @@ import {component}  from 'react'
 
 
 
-class About extends component {
+class About extends Component {
          constructor(){
             super();
          }
         componentDidMount(){
-            
+         
         }
-
-         return(){
-           <>
-           <ProfileClass name="gauravclass" addres="patna class"/>
-           <ProfileClass name="gauravclass" addres="patna class"/>
-           </>
-         }
+render() {
+    return (
+      <>
+        <ProfileClass/>
+       
+      </>
+    );
+  }
 }
 export default About;

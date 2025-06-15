@@ -5,8 +5,8 @@ import {useState} from "react"
 import Skeleton from "./skeleton";
 class ProfileClass extends React.Component {
    
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
 
         this.state={
             userdetail:null
@@ -14,24 +14,25 @@ class ProfileClass extends React.Component {
     }
     async componentDidMount(){
         
-          const  resdata = await fetch('https://api.github.com/users/gauravgitdev')
-            resdata = resdata.json();
-             this.setstate={
-               userdetail:resdata
-             
-         }
+          const  data = await fetch('https://api.github.com/users/raj840968ankit')
+            const resdata = await data.json();
+            this.setState({
+             userdetail: resdata
+                });
+
+         console.log(resdata)
      }
     render(){
 
         if(this.state.userdetail === null){
-            <Skeleton/>
+           return <Skeleton/>
         }
 
 
-        const {name,avatar_url} = this.state.userdetail
+        const {login,avatar_url} = this.state.userdetail
         return (
-            <>
-            {/* <h1>{this.props.name}
+            
+            /* <h1>{this.props.name}
 
             </h1>
             <h1>{this.props.addres}
@@ -48,14 +49,16 @@ class ProfileClass extends React.Component {
             }}>increment</button> */
             
             <>
-          <h1>name:{name}</h1>
+          <h1>name:{login}</h1>
           <img src={avatar_url}></img>
+          <h1>jvvdvivn</h1>
 
             </>
-            }
-            </>
+            
+            
+            
         )
-    }
-}
+    
+}}
 export default ProfileClass;
 
