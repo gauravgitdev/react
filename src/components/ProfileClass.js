@@ -19,9 +19,24 @@ class ProfileClass extends React.Component {
             this.setState({
              userdetail: resdata
                 });
-
-         console.log(resdata)
+                this.timer = setInterval(()=>{
+                    console.log('gaurav');
+                },1000);
      }
+       componenentDidUpdate(prevProps,prevState){
+        if(this.state.resdata!=prevState.resdata){
+            console.log('called did update');
+        }
+          
+
+        }
+        componentWillUnmount(){
+            console.log('component will unmount');
+            clearInterval(this.timer);
+
+        }
+
+    
     render(){
 
         if(this.state.userdetail === null){

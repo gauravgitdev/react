@@ -3,3 +3,60 @@ class component mein pahle constructor or super function call hota hain phir
 render() component uske baad componentDidMount() function call hota hain
 
 // componentDidMount() IS being used to call API in class based component
+
+ 
+ Mounting
+---------
+| constructor()           |
+|     ↓                   |
+|   render()              |
+|     ↓                   |
+| componentDidMount()     |
+
+Updating
+---------
+Triggers:
+- New props
+- setState()
+- forceUpdate()
+
+|   render()              |
+|     ↓                   |
+| React updates DOM/refs  |
+|     ↓                   |
+| componentDidUpdate()    |
+
+Unmounting
+-----------
+| componentWillUnmount() |
+
+
+
+Mounting Phase: When the component is being created and inserted into the DOM.
+
+constructor()
+
+render()
+
+componentDidMount()
+
+Updating Phase: When the component is being re-rendered due to changes in props, state, or a forced update.
+
+render()
+
+React applies DOM updates and updates refs
+
+componentDidUpdate()
+
+Unmounting Phase: When the component is removed from the DOM.
+
+componentWillUnmount()
+
+Let me know if you'd like this as a Markdown diagram or Mermaid chart.
+
+
+
+
+
+
+

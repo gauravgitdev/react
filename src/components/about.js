@@ -22,6 +22,14 @@ class About extends Component {
         componentDidMount(){
          
         }
+        componenentDidUpdate(prevProps,prevState){
+
+          
+
+        }
+        componentWillUnmount(){
+
+        }
 render() {
     return (
       <>
