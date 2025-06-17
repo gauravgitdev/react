@@ -15,6 +15,16 @@ export const ProductCard = () => {
       setOriginalProducts(data.products);     // ✅ keep a backup for filtering
     };
     fetchProducts();
+    const timer = setInterval(() => {
+      console.log('set interval')
+      
+    },1000); 
+     
+    return () =>{
+      clearInterval(timer);// here return is used inside the useeffect to clean up
+    }
+
+
   }, []);
     
   return listofProduct.length === 0 ? <Skeleton/> : (

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Suspense,lazy} from 'react';
 import { createRoot } from "react-dom/client";
 import Navbar from './components/Navbar';//importing default Navbar component
 import { ProductCard } from './components/ProductCard';//importing named export ProductCard component
@@ -8,6 +9,9 @@ import Men from './components/Men';
 import {Error} from './components/Error';
 import ProductDetails from './components/ProductDetails';
 import About from './components/about'
+// import Grocery from './components/grocery' //normal import na krk hum lazy se import karenge 
+// lazy loading ko hi code splitting, dynamic import etc kahtae hain
+const Grocery = lazy(()=>import('./components/grocery'));
 
 const App = () => {
   return (
@@ -43,7 +47,11 @@ const appRouter = createBrowserRouter([
          {
    path: "/about",
   element: <About />
-        }
+        },
+         {
+    path:"/grocery",
+    element:<Suspense fallback = {<h1>Loading...</h1>}><Grocery/></Suspense>
+         },
     ],
     errorElement:<Error/>
   },

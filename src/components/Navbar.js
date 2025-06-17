@@ -16,10 +16,11 @@ const Navbar = () => {
     <div className='navbar'>
       <h1>Logo</h1>
       <ul className='menu-items'>
-        <li>Home</li>
+        <li><Link to="/">HOME</Link></li>
         <li>Woman</li>
         <li><Link to="/kid">Kid</Link></li>
          <li><Link to="/about">ABOUT</Link></li>
+           <li><Link to="/grocery">grocery</Link></li>
         <li>Cart</li>
         <button onClick={()=>{
           btnName === "Light"?setbtnName("Dark"):setbtnName("Light")
