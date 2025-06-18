@@ -11,3 +11,26 @@ const Product = ({product}) => {
   
 };
 export default Product;//default export of Product component
+
+export const HOF = (Product) => {
+ 
+  return (props) => {
+  return (
+    <div style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '8px', marginBottom: '10px' }}>
+      <span style={{ 
+        backgroundColor: '#ffcc00', 
+        color: '#000', 
+        padding: '4px 8px', 
+        borderRadius: '4px', 
+        fontWeight: 'bold', 
+        display: 'inline-block',
+        marginBottom: '8px'
+      }}>
+        Best Seller
+      </span>
+      <Product {...props} />
+    </div>
+  );
+};
+
+};

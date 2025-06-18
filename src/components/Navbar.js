@@ -17,7 +17,7 @@ const Navbar = () => {
       <h1>Logo</h1>
       <ul className='menu-items'>
         <li><Link to="/">HOME</Link></li>
-        <li>Woman</li>
+        <li><Link to="/Men">MEN</Link></li>
         <li><Link to="/kid">Kid</Link></li>
          <li><Link to="/about">ABOUT</Link></li>
            <li><Link to="/grocery">grocery</Link></li>

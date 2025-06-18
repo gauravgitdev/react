@@ -1,0 +1,59 @@
+A Higher-Order Component (HOC) in React is an advanced pattern used to reuse component logic.
+
+🔹 Definition:
+A Higher-Order Component is a function that takes a component as input and returns
+a new component with additional features or modified behavior.
+
+
+🔸 Syntax:
+jsx
+Copy code
+const EnhancedComponent = HOC(WrappedComponent);
+Here:
+
+WrappedComponent is the original component.
+
+HOC is a function that returns a new component.
+
+🔹 Example:
+jsx
+Copy code
+// HOC that adds a label "Best Seller" above any component
+const withBestSeller = (Component) => {
+  return (props) => (
+    <div>
+      <span className="badge">Best Seller</span>
+      <Component {...props} />
+    </div>
+  );
+};
+
+// Original component
+const Product = ({ title }) => <h2>{title}</h2>;
+
+// Enhanced version using HOC
+const BestSellerProduct = withBestSeller(Product);
+Now BestSellerProduct will display "Best Seller" before showing the product title.
+
+🔸 Use Cases of HOC:
+Reusing logic across multiple components.
+
+Adding conditional rendering.
+
+Adding additional props.
+
+Adding wrappers or UI enhancements.
+
+🔹 Key Points:
+HOCs do not modify the original component — they create a new one.
+
+HOCs are pure functions — no side effects.
+
+Common HOCs: connect() in Redux, withRouter() in React Router v5.
+
+⚠️ Things to Avoid:
+Don’t mutate the original component.
+
+Use meaningful display names for debugging:
+
+NewComponent.displayName = `WithBestSeller(${getDisplayName(WrappedC

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Product from './Product';
+import Product,{HOF} from './Product';
 import Skeleton from './skeleton'; // Importing skeleton component
 import { Link } from 'react-router-dom';
 
@@ -19,6 +19,8 @@ export const ProductCard = () => {
       console.log('set interval')
       
     },1000); 
+
+
      
     return () =>{
       clearInterval(timer);// here return is used inside the useeffect to clean up
@@ -26,7 +28,7 @@ export const ProductCard = () => {
 
 
   }, []);
-    
+    const HOFComponent = HOF(Product);
   return listofProduct.length === 0 ? <Skeleton/> : (
     
     <div>
@@ -57,8 +59,10 @@ export const ProductCard = () => {
       <div className='product_card'>
         {listofProduct.length > 0 ? (
           listofProduct.map(product => (
-          <Link key={product.id} to={`/product/${product.id}`}>
-  <Product product={product} />
+          <Link key={product.id} to={`/product/${product.id}`}>{
+            product.rating >=4 ? <HOFComponent product={product}/>: <Product product={product} />
+          }
+  
 </Link>
           ))
         ) : (
