@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import {useState} from 'react'
 import {Suspense,lazy} from 'react';
 import { createRoot } from "react-dom/client";
 import Navbar from './components/Navbar';//importing default Navbar component
@@ -9,17 +10,26 @@ import Men from './components/Men';
 import {Error} from './components/Error';
 import ProductDetails from './components/ProductDetails';
 import About from './components/about'
+import CompoA from './components/compoA'
+import UserContext from './utils/UserContext';
 // import Grocery from './components/grocery' //normal import na krk hum lazy se import karenge 
 // lazy loading ko hi code splitting, dynamic import etc kahtae hain
 const Grocery = lazy(()=>import('./components/grocery'));
 
 const App = () => {
+  const [Username,setUsername] = useState()
   return (
+    <UserContext.Provider value={{name:Username,setUsername}}>
+      {/* here i am wraping the all th component 
+      by UserContext.provider through which i can access 
+      the UserContext data in all nested component */}
     <div>
       <Navbar />
       <br />
+      <CompoA/> 
       <Outlet />
     </div>
+    </UserContext.Provider>
   );
 };
 

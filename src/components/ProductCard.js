@@ -1,12 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
 import Product,{HOF} from './Product';
 import Skeleton from './skeleton'; // Importing skeleton component
 import { Link } from 'react-router-dom';
-
+import UserContext from '../utils/UserContext';//importing UserContext because to manuplate the value of the UseContect() hook
 export const ProductCard = () => {
   const [listofProduct, setlistofProducts] = useState([]);
   const [originalProducts, setOriginalProducts] = useState([]); // store original list
   const [searchTerm, setSearchTerm] = useState(''); // state for search input
+  const user = useContext(UserContext);//here i am storing the UserContext value into user
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch('https://dummyjson.com/products');
@@ -44,6 +45,10 @@ export const ProductCard = () => {
         }} value={searchTerm} ></input>
         
         <button >Search</button>
+        <div >
+          <input type ='text' value ={user.name} onChange={(e)=> user.setUsername(e.target.value)}/><h1>changing Usercontext value</h1>
+          {/* here i am implementing the manuplation of the useContext() hook */}
+        </div>
       </div>
       <button
         onClick={() => {
