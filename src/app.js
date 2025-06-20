@@ -11,7 +11,10 @@ import {Error} from './components/Error';
 import ProductDetails from './components/ProductDetails';
 import About from './components/about'
 import CompoA from './components/compoA'
+import Cart from './components/cart'
 import UserContext from './utils/UserContext';
+import { Provider } from 'react-redux';//this will wrap all the app componenet to communicate b/w the react and redux
+import appStore from './store/store';//
 // import Grocery from './components/grocery' //normal import na krk hum lazy se import karenge 
 // lazy loading ko hi code splitting, dynamic import etc kahtae hain
 const Grocery = lazy(()=>import('./components/grocery'));
@@ -19,6 +22,8 @@ const Grocery = lazy(()=>import('./components/grocery'));
 const App = () => {
   const [Username,setUsername] = useState()
   return (
+    <Provider store={appStore}> 
+    {/* //here we are passing probes of redux  */}
     <UserContext.Provider value={{name:Username,setUsername}}>
       {/* here i am wraping the all th component 
       by UserContext.provider through which i can access 
@@ -30,6 +35,7 @@ const App = () => {
       <Outlet />
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -57,6 +63,10 @@ const appRouter = createBrowserRouter([
          {
    path: "/about",
   element: <About />
+        },
+         {
+   path: "/cart",
+  element: <Cart/>
         },
          {
     path:"/grocery",

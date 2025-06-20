@@ -1,0 +1,189 @@
+// 👉 Import Redux toolkit functions
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import React from "react";
+import { useSelector, useDispatch, Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
+
+// ---------------------🛒 cartSlice -----------------------
+/*
+cartSlice contains:
+1. initialState: where cartItems is an empty array
+2. reducers: functions to modify the state — add, remove, clear
+*/
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: {
+    cartItems: [],
+  },
+  reducers: {
+    addItems: (state, action) => {
+      state.cartItems.push(action.payload);
+    },
+    removeItems: (state, action) => {
+      // Removes item by index
+      state.cartItems = state.cartItems.filter((_, index) => index !== action.payload);
+    },
+    clearItems: (state) => {
+      state.cartItems.length = 0;
+    },
+  },
+});
+
+// Export actions
+export const { addItems, removeItems, clearItems } = cartSlice.actions;
+
+// Export reducer for store
+const cartReducer = cartSlice.reducer;
+
+// -------------------🧠 Redux Store -----------------------
+
+const appStore = configureStore({
+  reducer: {
+    cart: cartReducer,
+  },
+});
+
+// --------------------📦 useGetSingleProduct Hook ----------------------
+// Simulates fetching product from API
+
+const useGetSingleProduct = (productId) => {
+  const [product, setProduct] = React.useState(null);
+  React.useEffect(() => {
+    fetch(`https://dummyjson.com/products/${productId}`)
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  }, [productId]);
+  return product;
+};
+
+// ----------------------🛍️ ProductDetails ----------------------------
+
+const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const { productId } = useParams();
+  const singleproduct = useGetSingleProduct(productId);
+
+  if (!singleproduct) {
+    return <p>Loading product details...</p>;
+  }
+
+  const { title, price, images } = singleproduct;
+
+  return (
+    <div className="product">
+      <img className="img_product" src={images[0]} alt={title} />
+      <h2>{title}</h2>
+      <p>Price: ${price}</p>
+      <button
+        onClick={() => dispatch(addItems(singleproduct))}
+        style={{
+          backgroundColor: "lightgreen",
+          borderRadius: "4px",
+          margin: "20px",
+          padding: "4px",
+          boxShadow: "0 0 2px rgba(96, 75, 75, 0.5)",
+        }}
+      >
+        Add to Cart
+      </button>
+    </div>
+  );
+};
+
+// --------------------------🧺 Cart Component ---------------------------
+
+const Cart = () => {
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  const dispatch = useDispatch();
+
+  return (
+    <>
+      <h1>Your Cart</h1>
+      {cartItems.length === 0 ? (
+        <p>Cart is empty</p>
+      ) : (
+        cartItems.map((item, index) => (
+          <div key={index} className="product">
+            <img className="img_product" src={item.images[0]} alt={item.title} />
+            <h2>{item.title}</h2>
+            <p>Price: ${item.price}</p>
+            <button
+              onClick={() => dispatch(removeItems(index))}
+              style={{
+                backgroundColor: "#f56262",
+                borderRadius: "4px",
+                margin: "10px",
+                padding: "4px",
+                color: "white",
+                boxShadow: "0 0 2px rgba(0,0,0,0.5)",
+              }}
+            >
+              Remove
+            </button>
+          </div>
+        ))
+      )}
+      {cartItems.length > 0 && (
+        <button
+          onClick={() => dispatch(clearItems())}
+          style={{
+            backgroundColor: "#333",
+            color: "white",
+            padding: "6px 12px",
+            borderRadius: "4px",
+            marginTop: "10px",
+          }}
+        >
+          Clear Cart
+        </button>
+      )}
+    </>
+  );
+};
+
+// ------------------------🌐 App + Routing ---------------------------
+
+const App = () => {
+  return (
+    <Provider store={appStore}>
+      <Router>
+        <Routes>
+          <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Router>
+    </Provider>
+  );
+};
+
+export default App;
+
+
+
+🧭 Redux Flow Diagram (Text View)
+
+[ProductDetails Component]
+   ↓ dispatch(addItems(product))
+   → [cartSlice Reducer] adds product to cartItems
+
+[Cart Component]
+   ↓ useSelector reads cartItems
+   → UI re-renders with cart data
+
+Also:
+- dispatch(removeItems(index)) → removes specific product
+- dispatch(clearItems()) → empties the cart
+
+
+📘 Summary of What You Learned
+
+Concept	Meaning
+configureStore()	Creates the central Redux store
+createSlice()	Combines reducers + action creators in one
+Provider	Makes the Redux store available to React
+useSelector()	Reads data from the Redux store
+useDispatch()	Sends actions to the Redux store
+cartSlice.reducer	Handles the logic to update the cart
+dispatch(action)	Triggers state change in the store
+
