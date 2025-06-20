@@ -2,23 +2,24 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import React from "react";
 import { useSelector, useDispatch, Provider } from "react-redux";
-import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
+
 
 // ---------------------🛒 cartSlice -----------------------
-/*
+/* 
 cartSlice contains:
-1. initialState: where cartItems is an empty array
-2. reducers: functions to modify the state — add, remove, clear
+1. name=>slice name 
+2. initialState: where cartItems is an empty array 
+3. reducers: functions to modify the state — add, remove, clear (reducer is a object where it have action and crossponding reducer functions)
 */
 
-const cartSlice = createSlice({
+const cartSlice = createSlice({//call back function below
   name: "cart",
   initialState: {
-    cartItems: [],
+    cartItems: [],this is used when we read the value from cartItem = const cartItems = useSelector((store) => store.cart.cartItems);
   },
   reducers: {
     addItems: (state, action) => {
-      state.cartItems.push(action.payload);
+      state.cartItems.push(action.payload);//action.payload contain value when we call addItems('gaurav').value=gaurav
     },
     removeItems: (state, action) => {
       // Removes item by index
@@ -31,20 +32,21 @@ const cartSlice = createSlice({
 });
 
 // Export actions
-export const { addItems, removeItems, clearItems } = cartSlice.actions;
+export const { addItems, removeItems, clearItems } = cartSlice.actions;//we can import this function where in need
 
 // Export reducer for store
-const cartReducer = cartSlice.reducer;
+export default cartSlice.reducer;
+
 
 // -------------------🧠 Redux Store -----------------------
-
+import cartReducer from cartSlice file
 const appStore = configureStore({
   reducer: {
     cart: cartReducer,
   },
 });
 
-// --------------------📦 useGetSingleProduct Hook ----------------------
+// --------------------📦 useGetSingleProduct custom Hook ----------------------
 // Simulates fetching product from API
 
 const useGetSingleProduct = (productId) => {
@@ -60,7 +62,7 @@ const useGetSingleProduct = (productId) => {
 // ----------------------🛍️ ProductDetails ----------------------------
 
 const ProductDetails = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();//import from redux
   const { productId } = useParams();
   const singleproduct = useGetSingleProduct(productId);
 
@@ -181,7 +183,7 @@ Also:
 Concept	Meaning
 configureStore()	Creates the central Redux store
 createSlice()	Combines reducers + action creators in one
-Provider	Makes the Redux store available to React
+Provider	Makes the Redux store available to React // through this we have to wrap all the component of app
 useSelector()	Reads data from the Redux store
 useDispatch()	Sends actions to the Redux store
 cartSlice.reducer	Handles the logic to update the cart
