@@ -13,6 +13,8 @@ import About from './components/about'
 import CompoA from './components/compoA'
 import Cart from './components/cart'
 import UserContext from './utils/UserContext';
+import Memo from './components/Memo';
+import Ref from './components/ref';
 import { Provider } from 'react-redux';//this will wrap all the app componenet to communicate b/w the react and redux
 import appStore from './store/store';//
 // import Grocery from './components/grocery' //normal import na krk hum lazy se import karenge 
@@ -63,6 +65,13 @@ const appRouter = createBrowserRouter([
          {
    path: "/about",
   element: <About />
+        },
+         {
+   path: "/memo",
+  element: <Memo />
+        },{
+   path: "/ref",
+  element: <Ref />
         },
          {
    path: "/cart",

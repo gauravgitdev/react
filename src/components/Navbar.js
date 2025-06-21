@@ -23,6 +23,7 @@ const Navbar = () => {
         <li><Link to="/kid">Kid</Link></li>
          <li><Link to="/about">ABOUT</Link></li>
            <li><Link to="/grocery">grocery</Link></li>
+            <li><Link to="/memo">Memo</Link></li>
         <li><Link to="/cart">Cart={cartItems.length}</Link></li>
         <button onClick={()=>{
           btnName === "Light"?setbtnName("Dark"):setbtnName("Light")

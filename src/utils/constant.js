@@ -1801,3 +1801,29 @@ export const productList = {
   "skip": 0,
   "limit": 30
 }
+
+function isPrime(num) {
+    if (num < 2) return false;
+    for (let i = 2; i * i <= num; i++) {
+        if (num % i === 0) return false;
+    }
+    return true;
+}
+
+ export function nthPrime(n) {
+    if (n < 1) return -1;
+
+    let count = 0;
+    let num = 1;
+
+    while (count < n) {
+        num++;
+        if (isPrime(num)) {
+            count++;
+        }
+    }
+
+    return num;
+}
+
+
