@@ -7,11 +7,13 @@ import { ProductCard } from './components/ProductCard';//importing named export 
 import { createBrowserRouter,RouterProvider,Outlet } from 'react-router-dom';
 import Kid from './components/kid';
 import Men from './components/Men';
+import Login from './components/Login';
 import {Error} from './components/Error';
 import ProductDetails from './components/ProductDetails';
 import About from './components/about'
 import CompoA from './components/compoA'
 import Cart from './components/cart'
+import Signup from './components/signup';
 import UserContext from './utils/UserContext';
 import Memo from './components/Memo';
 import Ref from './components/ref';
@@ -51,8 +53,16 @@ const appRouter = createBrowserRouter([
     element:<Kid/>
          },
       {
+    path:"/signup",
+    element:<Signup/>
+         },
+      {
     path:"/Men",
     element:<Men/>
+        },
+      {
+    path:"/login",
+    element:<Login/>
         },
         {
     path:"/",
