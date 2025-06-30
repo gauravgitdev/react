@@ -37,10 +37,11 @@ const Submithandler = (e) => {
     // If validation passes, you can proceed with form submission thus api call
    
     
+    
     console.log("UserName = ", formData.username);
     console.log("Email = ", formData.email);    
     console.log("Password = ", formData.password);
-    
+
     // Here you can add the logic to send formData to your backend or API
 }
   return (
