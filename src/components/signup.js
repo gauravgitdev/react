@@ -43,6 +43,7 @@ const Submithandler = (e) => {
     console.log("Password = ", formData.password);
     
 
+
     // Here you can add the logic to send formData to your backend or API
 }
 
