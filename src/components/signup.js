@@ -45,6 +45,7 @@ const Submithandler = (e) => {
     // Here you can add the logic to send formData to your backend or API
 }
 
+
   return (
     <div className="signup-container">
       <h2>Sign Up</h2>
