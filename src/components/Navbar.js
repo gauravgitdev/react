@@ -16,7 +16,7 @@ const Navbar = () => {
   const cartItems = useSelector((store)=>store.cart.cartItems)
   return (
     
-    
+
     
     
     <div className='navbar'>
@@ -33,6 +33,7 @@ const Navbar = () => {
           btnName === "Light"?setbtnName("Dark"):setbtnName("Light")
         }}>{btnName}</button>
       </ul>
+      
     </div>
   );
 };
