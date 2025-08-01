@@ -34,6 +34,7 @@ const Navbar = () => {
         }}>{btnName}</button>
       </ul>
       
+      
     </div>
   );
 };
