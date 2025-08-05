@@ -9,8 +9,7 @@ const Navbar = () => {
   // we alway use hook without any condition like we can not use hook inside loop or cinditional statement 
   // it behave inconsistansionaly
   useEffect(()=>{
-    console.log("dijcn");
-    
+    console.log("dijcn"); 
   },[])
   const [btnName,setbtnName]  = useState("Light")
   const cartItems = useSelector((store)=>store.cart.cartItems)
